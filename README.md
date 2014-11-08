@@ -4,7 +4,7 @@ This is an unofficial set of snippets I use for prototyping material design in F
 
 ### Button
 ```
-button = new Button 'Open dialog', backgroundColor: '#e91e63', width: 200, fit: true
+button = new Button 'Open dialog', backgroundColor: '#e91e63', width: 200
 ```
 ```
 button = new Button 'This button is auto-sized', fit: true
