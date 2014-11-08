@@ -1,6 +1,6 @@
 // `origin` is an object containing the global x and y coordinates of the ripple, such as a touch event
 
-class TouchRipple extends Layer
+class Ripple extends Layer
 	constructor: (origin, container, color='#000') ->
 		radius = (Math.max container.width, container.height) * 2
 		relativeOrigin =
@@ -18,7 +18,7 @@ class TouchRipple extends Layer
 		@placeBefore container
 
 		@ink = new Layer
-			superLayer:@
+			superLayer: @
 			backgroundColor: color
 			opacity: 0.25
 			width: radius * 2
