@@ -13,7 +13,7 @@ button = new Button 'This button is auto-sized', fit: true
 
 ### Card
 ```
-card = new Card x: 0, y: 0, width: 320, height: 200
+card = new Card width: 320, height: 200
 ```
 
 ### Ripple
