@@ -26,7 +26,7 @@ card.on Events.TouchEnd, ->
 
 ```
 imageLayer.on Events.TouchStart, (event) ->
-	@ripple = new TouchRipple(event, imageLayer, '#fff')
+	@ripple = new Ripple(event, imageLayer, '#fff')
 imageLayer.on Events.TouchEnd, ->
 	@ripple.remove()
 ```
