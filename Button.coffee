@@ -1,6 +1,6 @@
 class Button extends Layer
 	constructor: (text, options) ->
-		options.backgroundColor ?= '#03A9F4'
+		options.backgroundColor ?= '#03a9f4'
 		options.color ?= '#fff'
 		options.shadowY ?= 2
 		options.shadowBlur ?= 2
@@ -21,3 +21,7 @@ class Button extends Layer
 			@style.width = 'auto'
 			@style.minWidth = '88px'
 			@style.padding = '0 8px'
+
+
+# button = new Button 'Open dialog', backgroundColor: '#e91e63', width: 200
+# button = new Button 'This button is auto-sized', fit: true

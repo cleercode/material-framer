@@ -35,3 +35,14 @@ class Ripple extends Layer
 	
 	remove: ->
 		animation = @ink.animate properties: opacity: 0
+
+
+# card.on Events.TouchStart, (event) ->
+# 	@ripple = new Ripple(event, card)
+# card.on Events.TouchEnd, ->
+# 	@ripple.remove()
+
+# imageLayer.on Events.TouchStart, (event) ->
+# 	@ripple = new Ripple(event, imageLayer, '#fff')
+# imageLayer.on Events.TouchEnd, ->
+# 	@ripple.remove()

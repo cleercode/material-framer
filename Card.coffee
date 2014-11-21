@@ -8,3 +8,6 @@ class Card extends Layer
 			shadowColor: 'rgba(0, 0, 0, 0.24)'
 
 		super options
+
+
+# card = new Card width: 320, height: 200
