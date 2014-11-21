@@ -1,4 +1,4 @@
-// `origin` is an object containing the global x and y coordinates of the ripple, such as a touch event
+# `origin` is an object containing the global x and y coordinates of the ripple, such as a touch event
 
 class Ripple extends Layer
 	constructor: (origin, container, color='#000') ->
