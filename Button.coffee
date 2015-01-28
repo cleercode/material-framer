@@ -1,5 +1,5 @@
 class Button extends Layer
-	constructor: (text, options) ->
+	constructor: (text, options={}) ->
 		options.backgroundColor ?= '#03a9f4'
 		options.color ?= '#fff'
 		options.shadowY ?= 2

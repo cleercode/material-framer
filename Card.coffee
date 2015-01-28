@@ -1,5 +1,5 @@
 class Card extends Layer
-	constructor: (options) ->
+	constructor: (options={}) ->
 		options.backgroundColor ?= '#fff'
 		options.shadowY ?= 2
 		options.shadowBlur ?= 2
