@@ -27,7 +27,6 @@ exports.Button = class Button extends Layer
 			@style.minWidth = '88px'
 			@style.padding = '0 8px'
 
-
 exports.Card = class Card extends Layer
 	constructor: (options={}) ->
 		options.backgroundColor ?= '#fff'
@@ -48,7 +47,7 @@ exports.ProgressBar = class ProgressBar extends Layer
 		options.scaleY ?= 0
 
 		super options
-		
+
 		@fill = new Layer
 			superLayer: @
 			backgroundColor: options.fillColor || '#03a9f4'
@@ -73,30 +72,30 @@ exports.ProgressBar = class ProgressBar extends Layer
 
 
 exports.Ripple = class Ripple extends Layer
-	constructor: (origin, container, color='#000') ->
-		radius = Math.max container.width, container.height
-		relativeOrigin =
-			x: origin.x - container.x
-			y: origin.y - container.y
-		
+	constructor: (options={}) ->
+		options.container ?= Framer.Device.screen
+		options.origin ?= x: options.container.midX, y: options.container.midY
+		options.radius ?= Math.max options.container.width, options.container.height
+		options.color ?= '#000'
+
 		super
 			backgroundColor: 'transparent'
-			width: container.width
-			height: container.height
-			x: container.x
-			y: container.y
+			width: options.container.width
+			height: options.container.height
+			x: options.container.screenFrame.x
+			y: options.container.screenFrame.y
 			clip: true
 			
-		@placeBefore container
+		@placeBefore options.container
 
 		@ink = new Layer
 			superLayer: @
-			backgroundColor: color
+			backgroundColor: options.color
 			opacity: 0.25
-			width: radius * 2
-			height: radius * 2
-			midX: relativeOrigin.x
-			midY: relativeOrigin.y
+			width: options.radius * 2
+			height: options.radius * 2
+			midX: options.origin.x - options.container.screenFrame.x
+			midY: options.origin.y - options.container.screenFrame.y
 			borderRadius: '50%'
 			scale: 0
 		
@@ -108,3 +107,19 @@ exports.Ripple = class Ripple extends Layer
 	
 	remove: ->
 		animation = @ink.animate properties: opacity: 0
+
+
+# via https://www.facebook.com/groups/framerjs/permalink/580709592056116/
+scaledScreenFrame = ->
+	frame = Framer.Device.screen.screenFrame
+	frame.width  *= Framer.Device.screen.screenScaleX()
+	frame.height *= Framer.Device.screen.screenScaleY()
+	
+	frame.x += (Framer.Device.screen.width -  frame.width)  * Framer.Device.screen.originX
+	frame.y += (Framer.Device.screen.height - frame.height) * Framer.Device.screen.originY
+
+	return frame
+
+exports.eventToOrigin = (event) ->
+	x: (event.x - scaledScreenFrame().x) / Framer.Device.screen.screenScaleX()
+	y: (event.y - scaledScreenFrame().y) / Framer.Device.screen.screenScaleY()

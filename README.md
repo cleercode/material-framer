@@ -20,8 +20,21 @@ card = new material.Card width: 320, height: 200
 progressBar = new material.ProgressBar originY: 0, fillColor: '#ff5722', backgroundColor: '#ffccbc'
 progressBar.style.width = '100%'
 
+# this ripple is based on a tap position
 card.on Events.TouchStart, (event) ->
-	@ripple = new material.Ripple(event, card)
+	origin =
+		x: (event.x - screenFrame.x) / Framer.Device.screen.screenScaleX()
+		y: (event.y - screenFrame.y) / Framer.Device.screen.screenScaleY()
+	@ripple = new material.Ripple origin: event, container: card, color: '#fff'
 card.on Events.TouchEnd, ->
+	@ripple.remove()
+
+# this ripple is centered on the toolbar icon but contained in the toolbar
+toolbarIcon.on Events.TouchStart, ->
+	origin =
+		x: @screenFrame.x + @width / 2
+		y: @screenFrame.y + @height / 2
+	@ripple = new material.Ripple origin: origin, container: toolbar, radius: 96
+toolbarIcon.on Events.TouchEnd, ->
 	@ripple.remove()
 ```
