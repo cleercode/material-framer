@@ -27,7 +27,7 @@ exports.Button = class Button extends Layer
 			@style.minWidth = '88px'
 			@style.padding = '0 8px'
 
-exports.Card = class Card extends Layert
+exports.Card = class Card extends Layer
 	constructor: (options={}) ->
 		options.backgroundColor ?= '#fff'
 		options.shadowY ?= 2
