@@ -27,7 +27,7 @@ exports.Button = class Button extends Layer
 			@style.minWidth = '88px'
 			@style.padding = '0 8px'
 
-exports.Card = class Card extends Layer
+exports.Card = class Card extends Layert
 	constructor: (options={}) ->
 		options.backgroundColor ?= '#fff'
 		options.shadowY ?= 2
@@ -79,7 +79,7 @@ exports.Ripple = class Ripple extends Layer
 		options.color ?= '#000'
 
 		super
-			backgroundColor: 'transparent'
+			backgroundColor: null
 			width: options.container.width
 			height: options.container.height
 			x: options.container.screenFrame.x
@@ -107,6 +107,7 @@ exports.Ripple = class Ripple extends Layer
 	
 	remove: ->
 		animation = @ink.animate properties: opacity: 0
+		animation.on Events.AnimationEnd, => @destroy()
 
 
 # via https://www.facebook.com/groups/framerjs/permalink/580709592056116/
